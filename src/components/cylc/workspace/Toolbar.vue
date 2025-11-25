@@ -137,18 +137,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
       </v-btn>
 
       <!-- workflow info icon -->
-      <v-tooltip v-if="isRunning" :activator="$event => $event.target.closest('span')">
-        <template v-slot:activator="{ props }">
-          <span v-bind="props">
-            <v-icon :icon="$options.icons.info"/>
-          </span>
-        </template>
-        <dl>
-          <dt><strong>Owner:</strong> {{ currentWorkflow.node.owner }}</dt>
-          <dt><strong>Host:</strong> {{ currentWorkflow.node.host }}</dt>
-          <dt><strong>Cylc version:</strong> {{ currentWorkflow.node.cylcVersion }}</dt>
-        </dl>
-      </v-tooltip>
+      <v-chip
+        v-if="isRunning"
+        :prepend-icon="$options.icons.info"
+        label
+        color="blue-grey-darken-1"
+        class="cursor-default"
+        density="comfortable"
+      >
+        Cylc {{ currentWorkflow.node.cylcVersion }}
+        <v-tooltip>
+          <dl>
+            <dt><strong>Owner:</strong> {{ currentWorkflow.node.owner }}</dt>
+            <dt><strong>Host:</strong> {{ currentWorkflow.node.host }}</dt>
+          </dl>
+        </v-tooltip>
+      </v-chip>
 
       <!-- workflow status message -->
       <span class="status-msg text-body-2">

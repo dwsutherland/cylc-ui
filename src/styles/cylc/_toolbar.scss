@@ -40,7 +40,8 @@
     letter-spacing: normal !important;
   }
 
-  .v-icon {
+  .c-workflow-controls .v-icon,
+  .v-btn--size-default .v-icon {
     font-size: $icon-size;
   }
 

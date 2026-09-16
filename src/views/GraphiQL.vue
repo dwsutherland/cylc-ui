@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import 'graphiql/graphiql.css'
 import { render, createElement } from 'preact/compat'
 import { GraphiQL } from 'graphiql'
-import { fallbackGraphQLFetcher, graphQLFetcher } from '@/graphql/graphiql'
+import { createGraphiqlFetcher } from '@/graphql/graphiql'
 
 export default {
   name: 'GraphiQL',
@@ -54,9 +54,7 @@ export default {
   methods: {
     createFetcher () {
       const subscriptionClient = this.$workflowService.subscriptionClient
-      return subscriptionClient !== null
-        ? graphQLFetcher(subscriptionClient, fallbackGraphQLFetcher, this)
-        : fallbackGraphQLFetcher
+      return createGraphiqlFetcher(subscriptionClient)
     },
   },
 }
